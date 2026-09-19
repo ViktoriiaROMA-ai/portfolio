@@ -5,7 +5,7 @@
   <meta name="p:domain_verify" content="cc257505095991ce7f1dcfe1a7e1b198"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#160409">
-<meta name="description" content="Портфоліо візуальної художниці Вікторії ROMA: акварель, живопис, просторові інтервенції.">
+<meta name="description" content="Портфоліо візуальної художниці Вікторії ROMA: акварель, живопис, кераміка.">
 <title>Вікторія Рома</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#160409}
+html{scroll-behavior:smooth;background:#160409;scroll-padding-top:var(--hh,64px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.62 var(--serif);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 button{font:inherit;color:inherit}
@@ -29,8 +29,8 @@ button{font:inherit;color:inherit}
 .skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 12px;font:500 .75rem var(--mono);z-index:20}
 .skip:focus{left:8px}
 
-/* header */
-.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 28px;padding-block:20px;border-bottom:1px solid var(--line)}
+/* header — stays pinned to the top while scrolling */
+.top{position:sticky;top:0;z-index:10;background:rgba(22,4,9,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 28px;padding-block:14px;border-bottom:1px solid var(--line)}
 .brand{font:500 .78rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
 .nav{display:flex;flex-wrap:wrap;gap:8px 24px}
 .nav a{font:400 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding-block:6px}
@@ -129,7 +129,8 @@ dialog[open]{display:flex;flex-direction:column;align-items:center;justify-conte
 .statement p{font:300 clamp(1.25rem,2.2vw,1.65rem)/1.5 var(--serif);margin:0 0 .9em;max-width:38rem}
 .statement p:first-of-type{font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.25;font-style:italic;font-weight:300}
 
-/* cv */
+/* cv (lives inside the About section) */
+.cv-wrap{margin-top:clamp(56px,8vw,104px);padding-top:clamp(40px,6vw,72px);border-top:1px solid var(--line)}
 .cv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,6vw,80px) clamp(28px,6vw,88px)}
 .cv-block h3{font:500 .74rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;padding-bottom:14px;border-bottom:1px solid var(--ink)}
 .cv{list-style:none;margin:0;padding:0}
@@ -144,6 +145,7 @@ dialog[open]{display:flex;flex-direction:column;align-items:center;justify-conte
 .facts div{border-top:1px solid var(--ink);padding:16px 0 30px}
 .facts dt{font:500 .72rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
 .facts dd{margin:0;color:var(--muted);max-width:28rem}
+.buy-cta{margin-top:clamp(20px,3vw,36px)}
 
 /* contact */
 .contact h2{font-size:clamp(2.2rem,6vw,4.6rem);font-style:italic;font-weight:200;max-width:16em}
@@ -158,7 +160,9 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
   .cv-grid{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .nav{order:3;width:100%}
+  .top{padding-block:10px;gap:8px 16px}
+  .nav{order:3;width:100%;gap:0 18px}
+  .nav a{padding-block:5px}
   .facts{grid-template-columns:1fr}
   .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 14px}
   .lb-prev,.lb-next{top:auto;bottom:14px;transform:none}
@@ -178,7 +182,6 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
       <a href="#works" data-i="nWorks"></a>
 <a href="#projects" data-i="nProjects"></a>
       <a href="#about" data-i="nAbout"></a>
-      <a href="#cv" data-i="nCv"></a>
       <a href="#buy" data-i="nBuy"></a>
       <a href="#contact" data-i="nContact"></a>
     </nav>
@@ -196,7 +199,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
         <p class="lede" data-i="lede"></p>
         <div class="cta">
           <a class="btn" href="#works" data-i="ctaWorks"></a>
-          <a class="btn ghost" href="https://www.etsy.com/shop/ARTbyViktoriiaROMA" target="_blank" rel="noopener"><span data-i="ctaEtsy"></span> <span aria-hidden="true">↗</span></a>
+          <a class="btn ghost" href="https://www.saatchiart.com/viktorikaroma" target="_blank" rel="noopener"><span data-i="ctaSaatchi"></span> <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <figure class="feature">
@@ -233,15 +236,15 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
         </figure>
         <div class="statement" id="statement"></div>
       </div>
-    </section>
 
-    <section class="sec" id="cv">
-      <div class="sec-head"><p class="kicker" data-i="cvKicker"></p><h2>CV</h2></div>
-      <div class="cv-grid">
-        <section class="cv-block"><h3 data-i="cvEdu"></h3><ol class="cv" id="cvEdu"></ol></section>
-        <section class="cv-block"><h3 data-i="cvAwards"></h3><ol class="cv" id="cvAwards"></ol></section>
-        <section class="cv-block"><h3 data-i="cvGroup"></h3><ol class="cv" id="cvGroup"></ol></section>
-        <section class="cv-block"><h3 data-i="cvSolo"></h3><ol class="cv" id="cvSolo"></ol></section>
+      <div class="cv-wrap" id="cv">
+        <div class="sec-head"><p class="kicker" data-i="cvKicker"></p><h2>CV</h2></div>
+        <div class="cv-grid">
+          <section class="cv-block"><h3 data-i="cvEdu"></h3><ol class="cv" id="cvEdu"></ol></section>
+          <section class="cv-block"><h3 data-i="cvAwards"></h3><ol class="cv" id="cvAwards"></ol></section>
+          <section class="cv-block"><h3 data-i="cvGroup"></h3><ol class="cv" id="cvGroup"></ol></section>
+          <section class="cv-block"><h3 data-i="cvSolo"></h3><ol class="cv" id="cvSolo"></ol></section>
+        </div>
       </div>
     </section>
 
@@ -251,13 +254,21 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
         <h2 data-i="buyTitle"></h2>
       </div>
       <dl class="facts" id="facts"></dl>
+      <div class="cta buy-cta">
+        <a class="btn" href="https://www.etsy.com/shop/ARTbyViktoriiaROMA" target="_blank" rel="noopener"><span data-i="buyEtsy"></span> <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://www.saatchiart.com/viktorikaroma" target="_blank" rel="noopener"><span data-i="buySaatchi"></span> <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://yoom.com.ua/artists/viktoriya-romanchuk" target="_blank" rel="noopener">YOOM <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
 
     <section class="sec contact" id="contact">
       <p class="kicker" data-i="contactKicker"></p>
       <h2 data-i="tagline"></h2>
       <p data-i="contactText"></p>
-      <a class="btn" href="https://www.etsy.com/shop/ARTbyViktoriiaROMA" target="_blank" rel="noopener"><span data-i="contactBtn"></span> <span aria-hidden="true">↗</span></a>
+      <div class="cta">
+        <a class="btn" href="https://www.instagram.com/viktoriia__roma/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://www.pinterest.com/Viktorii_roma_is/" target="_blank" rel="noopener">Pinterest <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
   </main>
 
@@ -415,10 +426,10 @@ $('pd').scrollTop=0;
 
   var T={
     uk:{
-      skip:'До змісту', nWorks:'Роботи', nProjects:'Проєкти', nAbout:'Про мене', nCv:'CV', nBuy:'Як придбати', nContact:'Контакти',
-      eyebrow:'Візуальна художниця · акварель, живопис, просторові інтервенції', nameA:'Вікторія',
+      skip:'До змісту', nWorks:'Роботи', nProjects:'Проєкти', nAbout:'Про мене і CV', nBuy:'Як придбати', nContact:'Контакти',
+      eyebrow:'Візуальна художниця · акварель, живопис, кераміка', nameA:'Вікторія',
       lede:'Досліджую поняття абсурду як основний емоційний метод.',
-      ctaWorks:'Дивитися роботи', ctaEtsy:'Оригінали в Etsy',
+      ctaWorks:'Дивитися роботи', ctaSaatchi:'Оригінали на Saatchi Art',
       featCap:'<em>Sweet Heart</em> · 2025 · акварель, 20×25 см',
       worksKicker:'Роботи', worksTitle:'Акварель',
       worksLede:'Роботи з виставок «Sweet Heart» (Tovarystvo, Львів, 10.03–09.04.2026) та «Я маю тобі сказати, я маю тобі сказати», а також нові роботи. Натисніть на роботу, щоб збільшити.',
@@ -429,12 +440,12 @@ projKicker:'Архів', projTitle:'Проєкти', projLede:'Відео, ін�
       statement:[
         'Досліджую поняття абсурду як основний емоційний метод.',
         'Моя практика поєднує тілесність та фізіологію із технікою ботанічної точності, створюючи крихкі простори, де перетинаються історичні стереотипи і особисті міфи.',
-        'Через акварель, живопис та просторові інтервенції я вивчаю руйнування критичних станів і ілюзії героїчної ідентичності.',
+        'Через акварель, живопис та кераміку я вивчаю руйнування критичних станів і ілюзії героїчної ідентичності.',
         'Я сприймаю реальність як змінну конструкцію, балансуючи між хаосом, пам’яттю й уявними конструкціями.',
         'Зараз я працюю в Україні, перетворюючи подієву лінію інфопростору на візуальні абсурди, які опираються простому сприйняттю.'
       ],
       cvKicker:'Резюме', cvEdu:'Освіта', cvAwards:'Нагороди', cvGroup:'Групові виставки', cvSolo:'Персональні проєкти',
-      buyKicker:'Як придбати', buyTitle:'Від майстерні до вашої стіни',
+      buyKicker:'Як придбати', buyTitle:'Від майстерні до вашої стіни', buyEtsy:'Магазин на Etsy', buySaatchi:'Saatchi Art',
       facts2:[
         ['Ціна','Оригінал 20×25 см у рамі — $205.'],
         ['Оригінал','Кожна робота існує в єдиному екземплярі.'],
@@ -444,14 +455,14 @@ projKicker:'Архів', projTitle:'Проєкти', projLede:'Відео, ін�
         ['Роботи на замовлення','Наразі не приймаю.']
       ],
       contactKicker:'Контакти', tagline:'Дивна краса, що вносить почуття у ваш дім.',
-      contactText:'Оригінали доступні в магазині ARTbyViktoriiaROMA на Etsy.', contactBtn:'Відкрити магазин',
+      contactText:'Нові роботи та новини — в Instagram і Pinterest.',
       footL:'© 2026 Вікторія ROMA', footR:'Україна'
     },
     en:{
-      skip:'Skip to content', nWorks:'Works', nProjects:'Projects', nAbout:'About', nCv:'CV', nBuy:'How to buy', nContact:'Contact',
-      eyebrow:'Visual artist · watercolor, painting, spatial interventions', nameA:'Viktoriia',
+      skip:'Skip to content', nWorks:'Works', nProjects:'Projects', nAbout:'About & CV', nBuy:'How to buy', nContact:'Contact',
+      eyebrow:'Visual artist · watercolor, painting, ceramics', nameA:'Viktoriia',
       lede:'I explore the notion of the absurd as a primary emotional method.',
-      ctaWorks:'View works', ctaEtsy:'Originals on Etsy',
+      ctaWorks:'View works', ctaSaatchi:'Originals on Saatchi Art',
       featCap:'<em>Sweet Heart</em> · 2025 · watercolor, 20×25 cm',
       worksKicker:'Works', worksTitle:'Watercolor',
       worksLede:'Works from the exhibitions “Sweet Heart” (Tovarystvo, Lviv, 10.03–09.04.2026) and “I Have to Tell You, I Have to Tell You”, plus new pieces. Click a work to enlarge.',
@@ -462,12 +473,12 @@ projKicker:'Archive', projTitle:'Projects', projLede:'Video, installation, sculp
       statement:[
         'I explore the notion of the absurd as a primary emotional method.',
         'My practice combines corporeality and physiology with a technique of botanical precision, creating fragile spaces where historical stereotypes and personal myths intersect.',
-        'Through watercolor, painting and spatial interventions, I study the destruction of critical states and the illusion of a heroic identity.',
+        'Through watercolor, painting and ceramics, I study the destruction of critical states and the illusion of a heroic identity.',
         'I perceive reality as a mutable construct, balancing between chaos, memory and imagined constructs.',
         'I am currently working in Ukraine, turning the event line of the infospace into visual absurdities that resist simple perception.'
       ],
       cvKicker:'Curriculum vitae', cvEdu:'Education', cvAwards:'Awards', cvGroup:'Group exhibitions', cvSolo:'Solo projects',
-      buyKicker:'How to buy', buyTitle:'From the studio to your wall',
+      buyKicker:'How to buy', buyTitle:'From the studio to your wall', buyEtsy:'Shop on Etsy', buySaatchi:'Saatchi Art',
       facts2:[
         ['Price','Original, 20×25 cm, framed — $205.'],
         ['Original','Every piece exists in a single copy.'],
@@ -477,7 +488,7 @@ projKicker:'Archive', projTitle:'Projects', projLede:'Video, installation, sculp
         ['Commissions','Not taking any for now.']
       ],
       contactKicker:'Contact', tagline:'Strange beauty that brings feeling into your home.',
-      contactText:'Originals are available in the ARTbyViktoriiaROMA shop on Etsy.', contactBtn:'Open the shop',
+      contactText:'New work and news are on Instagram and Pinterest.',
       footL:'© 2026 Viktoriia ROMA', footR:'Ukraine'
     }
   };
@@ -593,6 +604,13 @@ list=pImgs(p).map(function(s,j){return {p:pcur,src:s,alt:p.t[1]+' — '+(j+1)};}
 openLb(+b.getAttribute('data-j'));
 });
 render();
+
+  /* keep anchor jumps (menu links) from hiding under the pinned header */
+  var hdr=document.querySelector('.top');
+  function syncHdr(){document.documentElement.style.setProperty('--hh',hdr.offsetHeight+'px');}
+  syncHdr();
+  if(window.ResizeObserver)new ResizeObserver(syncHdr).observe(hdr);
+  else window.addEventListener('resize',syncHdr);
 })();
 </script>
 
