@@ -84,6 +84,28 @@ h2{font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.06;letter-spac
 .sold{color:var(--sold);font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .sold::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sold);margin-right:6px;transform:translateY(-1px)}
 
+/* projects */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:40px 26px}
+.pcard{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer}
+.pcard .frame{display:block;aspect-ratio:3/2;background:var(--surface);overflow:hidden}
+.pcard img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pcard:hover img{transform:scale(1.035)}
+.pcard .cap{display:block;margin-top:12px}
+.pcard .cap b{display:block;font-weight:400;font-size:1.15rem;line-height:1.3}
+.pcard .cap small{display:block;font:400 .72rem/1.5 var(--mono);letter-spacing:.06em;color:var(--muted);margin-top:3px;text-transform:uppercase}
+#pd{background:var(--bg);overflow:auto}
+#pd[open]{display:block;padding:0}
+.pd-in{max-width:1080px;margin:0 auto;padding:72px clamp(16px,4vw,40px) 64px}
+.pd-in h3{font:300 clamp(1.8rem,4vw,3rem)/1.1 var(--serif);margin:0 0 10px}
+.pd-meta{font:400 .72rem/1.6 var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin:0 0 24px}
+.pd-text p{font:300 1.2rem/1.55 var(--serif);max-width:44rem;margin:0 0 1em}
+.pd-links{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 36px}
+.pd-grid{columns:3 260px;column-gap:18px}
+.pd-grid button{display:block;width:100%;padding:0;border:0;background:var(--surface);margin:0 0 18px;cursor:zoom-in;break-inside:avoid}
+.pd-grid img{display:block;width:100%;height:auto}
+.pd-close{z-index:2;background:var(--bg)}
+@media (prefers-reduced-motion:reduce){.pcard img{transition:none}.pcard:hover img{transform:none}}
+
 /* lightbox */
 dialog{border:0;padding:0;background:transparent;color:var(--ink);max-width:none;max-height:none;width:100vw;height:100dvh}
 dialog::backdrop{background:rgba(9,1,4,.94)}
@@ -154,6 +176,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
     <a class="brand" href="#top">Viktoriia ROMA</a>
     <nav class="nav" aria-label="Menu">
       <a href="#works" data-i="nWorks"></a>
+<a href="#projects" data-i="nProjects"></a>
       <a href="#about" data-i="nAbout"></a>
       <a href="#cv" data-i="nCv"></a>
       <a href="#buy" data-i="nBuy"></a>
@@ -192,7 +215,16 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
       <div class="gallery" id="gallery"></div>
     </section>
 
-    <section class="sec" id="about">
+    <section class="sec" id="projects">
+<div class="sec-head">
+<p class="kicker" data-i="projKicker"></p>
+<h2 data-i="projTitle"></h2>
+<p data-i="projLede"></p>
+</div>
+<div class="pgrid" id="projGrid"></div>
+</section>
+
+<section class="sec" id="about">
       <p class="kicker" data-i="aboutKicker"></p>
       <div class="about">
         <figure class="portrait">
@@ -235,6 +267,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
   </footer>
 </div>
 
+<dialog id="pd" aria-label="Project"></dialog>
 <dialog id="lb" aria-label="Artwork">
   <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
   <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">←</button>
@@ -295,7 +328,49 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
     ['page_23','sweet',['Без назви','Untitled'],'13×18',2025,'w',1,0]
   ].map(function(r){return {id:r[0],s:r[1],t:r[2],size:r[3],y:r[4],m:r[5],f:r[6],sold:r[7]};});
 
-  /* CV: [year, ua main, ua sub, en main, en sub] */
+  /* projects: slug, images, videos, year, behance url, [ua,en] title, [ua,en] text */
+var PJ=[
+{slug:'ghosts',n:10,v:1,y:2022,url:'https://www.behance.net/gallery/157061763/GHOSTS',t:['Привиди','Ghosts'],d:['Проєкт відображає проблему родин, розділених війною в Україні, відтворюючи спілкування подружжя на відстані.\nВідео (проєкцію) обрано основним медіумом як найкращий спосіб передати нереальність такого спілкування: спотворення звуку, затримку й деформацію зображення.\nОснова роботи — документальні файли (відео, аудіо й текст), накопичені під час перебування на резиденції. Вони фіксують дві паралельні реальності, у яких перебувають художники. Цей процес обміну новинами й емоціями в глобальному сенсі відображає українське суспільство, розділене на тих, хто виїхав під час бойових дій, і тих, хто залишився.','The project reflects the problem of families separated by the war in Ukraine, reproducing the communication of spouses at a distance.\nVideo (projection) was chosen as the main medium as the best means of conveying the unreality of such communication: sound distortion, delay and image deformation.\nThe work is based on documentary files (video, audio and text) accumulated during a residency. They record two parallel realities in which the artists find themselves. This exchange of news and emotions is, in a global sense, a reflection of Ukrainian society, divided between those who left the country during the hostilities and those who stayed.']},
+{slug:'plur-90s',n:13,v:0,y:0,url:'https://www.behance.net/gallery/140345605/PLUR-90s',t:['PLUR 90s','PLUR 90s'],d:null},
+{slug:'kreminna',n:5,v:0,y:0,url:'https://www.behance.net/gallery/146515037/kremnnaukrana',t:['Кремінна/Україна','Kreminna/Ukraine'],d:null},
+{slug:'psychology-of-war',n:11,v:2,y:2022,url:'https://www.behance.net/gallery/146520357/psihologja-vjni',t:['Психологія війни','Psychology of War'],d:['Благодійний мистецький пленер УКУ «На межі». Серія «Стани війни»: «Зміна реальності», «Гнів», «Депресія», «Прийняття» (полотно, вугілля, акрил).\nСерія «Стани війни» — про військові дії, які відбуваються у кожного з нас, незалежно від того, де ми перебуваємо.\n«Зміна реальності» — як мить, коли було натиснуто на спусковий гачок: те, що відбулося потім, уже неможливо порівнювати з тим, що існувало до.\n«Гнів» — це не завжди бій, це можуть бути сльози й втеча, але завжди це найпотужніша реакція, яка керує нами. Після цього завжди приходить спустошення.\n«Депресія». Дослідження стверджують, що «через півроку майже всі відчувають зменшення негативних емоцій, проте повного одужання не настає…»\n«Прийняття» — дія, яка зараз не може бути завершена, бо як можна змиритись і прийняти те, що не має кінця й щодня завдає тобі нового болю…','Charity art plein air of the Ukrainian Catholic University “On the Edge”. Series “States of War”: “Change of Reality”, “Anger”, “Depression”, “Acceptance” (canvas, charcoal, acrylic).\nThe “States of War” series is about the hostilities that take place within each of us, regardless of where we are.\n“Change of Reality” is like the moment the trigger was pulled: what happened afterwards can no longer be compared with what existed before.\n“Anger” is not always a fight; it may be tears and flight, but it is always the most powerful reaction, the one that governs us. Emptiness always follows.\n“Depression”. Studies say that “after six months almost everyone feels a decrease in negative emotions, but full recovery does not come…”\n“Acceptance” is an action that cannot be completed now, because how can one come to terms with and accept what has no end and inflicts new pain every day…']},
+{slug:'post-traumatic-syndrome',n:6,v:0,y:0,url:'https://www.behance.net/gallery/145073171/Post-traumatic-syndrome',t:['Посттравматичний синдром','Post-traumatic syndrome'],d:null},
+{slug:'watchman',n:13,v:0,y:0,url:'https://www.behance.net/gallery/145921019/Watchman',t:['Watchman','Watchman'],d:null},
+{slug:'cage',n:3,v:0,y:2019,url:'https://www.behance.net/gallery/113725307/Cage',t:['Cage','Cage'],d:['Обмеження й правила: що вони означають у контексті особистої та індивідуальної свободи? Символічна клітка чи захист від «зовнішнього».\nРозміри скульптур: 75×40×330. Матеріал: дерево, металевий дріт. Луцьк, 2019.\nСвоєрідна форма протесту: з одного боку, вона дає право висловити свою точку зору, з іншого — змушує суворо дотримуватися встановлених принципів заради досягнення мети. Ваші думки й бажання обмежені зовнішньою оболонкою, яку ми створюємо самі. Зовнішні стереотипи, правила й страхи будують навколо нас каркас, у якому ми проживаємо все життя. Питання лишається: бути захищеним і жити в клітці — чи жити без захисту, але вільним.\nПроєкт передбачає створення каркасних скульптур, які стають символічною кліткою для реальних людей. Презентація має форму перформансу. Складники: перформанс, інсталяція.','Restrictions and rules: what are they in the context of personal and individual freedom? A symbolic cage, or protection from the “outside”.\nDimensions of the sculptures: 75×40×330. Material: wood, metal wire. Lutsk, 2019.\nA peculiar form of protest which, on the one hand, gives you the right to express your point of view and, on the other, forces you to adhere strictly to the set principles in order to achieve the goal. Your thoughts and desires are limited by the outer shell that we create for ourselves. External stereotypes, rules and fears build a frame around us in which we spend our whole life. The question remains: to be protected and live in a cage, or to live without protection but free.\nThe project involves creating frame sculptures that become a symbolic cage for real people. The presentation takes the form of a performance. Components: performance, installation.']},
+{slug:'flesh-canvas',n:3,v:0,y:0,url:'https://www.behance.net/gallery/101768387/FleshCanvas',t:['Flesh/Canvas','Flesh/Canvas'],d:null},
+{slug:'nyenskans',n:4,v:0,y:0,url:'https://www.behance.net/gallery/146516357/Nyenskans',t:['Nyenskans','Nyenskans'],d:['Ніеншанц (швед. Nyenskans) — шведська фортеця на злитті річок Нева й Охта, на місці якої пізніше постав Санкт-Петербург. Збудована 1611 року для утвердження шведської влади в Інгрії; 1702 року фортецю й місто Ніен захопила Росія під час Північної війни.','Nyenschantz (Nyenskans) was a Swedish fortress at the confluence of the Neva and Okhta rivers, on the site of present-day Saint Petersburg. It was built in 1611 to establish Swedish rule in Ingria; in 1702 the fortress and the town of Nyen were conquered by Russia during the Great Northern War.']},
+{slug:'earth-2022',n:8,v:0,y:2022,url:'https://www.behance.net/gallery/145068983/Earth-2022',t:['Earth','Earth'],d:null},
+{slug:'mask',n:1,v:0,y:0,url:'https://www.behance.net/gallery/147279021/Mask',t:['Mask','Mask'],d:null},
+{slug:'mariupol',n:16,v:0,y:0,url:'https://www.behance.net/gallery/144398509/Mariupol-and-Latent-Liberalism',t:['Mariupol and Latent Liberalism','Mariupol and Latent Liberalism'],d:null}
+];
+function pCount(n){
+if(lang!=='uk')return n+(n===1?' image':' images');
+var a=n%10,b=n%100;
+return n+' '+(((a>=2&&a<=4&&(b<10||b>=20))||(a===1&&b!==11))?'зображення':'зображень');
+}
+function pImgs(p){var a=[],i;for(i=1;i<=p.n;i++)a.push('projects/'+p.slug+'-'+(i<10?'0':'')+i+'.jpg');return a;}
+function renderProjects(){
+var k=li();
+$('projGrid').innerHTML=PJ.map(function(p,i){
+var meta=[];if(p.y)meta.push(p.y);meta.push(pCount(p.n));
+return '<button type="button" class="pcard" data-p="'+i+'"><span class="frame"><img loading="lazy" src="projects/'+p.slug+'-01.jpg" alt="'+p.t[1]+'"></span>'+
+'<span class="cap"><b>'+p.t[k]+'</b><small>'+meta.join(' · ')+'</small></span></button>';
+}).join('');
+}
+function openProject(i){
+var t=T[lang],k=li(),p=PJ[i],meta=[];
+pcur=i;
+if(p.y)meta.push(p.y);meta.push(pCount(p.n));
+var html='<button type="button" class="lb-btn lb-close pd-close" id="pdClose" aria-label="'+t.close+'">×</button><div class="pd-in"><h3>'+p.t[k]+'</h3><p class="pd-meta">'+meta.join(' · ')+'</p>';
+if(p.d)html+='<div class="pd-text">'+p.d[k].split('\n').map(function(s){return '<p>'+s+'</p>';}).join('')+'</div>';
+html+='<div class="pd-links"><a class="btn ghost" href="'+p.url+'" target="_blank" rel="noopener">'+(p.v?t.pVideo:t.pBehance)+' <span aria-hidden="true">↗</span></a></div>';
+html+='<div class="pd-grid">'+pImgs(p).map(function(s,j){return '<button type="button" data-j="'+j+'"><img loading="lazy" src="'+s+'" alt="'+p.t[1]+' — '+(j+1)+'"></button>';}).join('')+'</div></div>';
+$('pd').innerHTML=html;
+if(!$('pd').open)$('pd').showModal();
+$('pd').scrollTop=0;
+}
+
+/* CV: [year, ua main, ua sub, en main, en sub] */
   var CV={
     edu:[
       ['2020','M.A. монументального живопису','Львівська національна академія мистецтв','M.A. in Monumental Painting','Lviv National Academy of Arts'],
@@ -340,18 +415,19 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
 
   var T={
     uk:{
-      skip:'До змісту', nWorks:'Роботи', nAbout:'Про мене', nCv:'CV', nBuy:'Як придбати', nContact:'Контакти',
+      skip:'До змісту', nWorks:'Роботи', nProjects:'Проєкти', nAbout:'Про мене', nCv:'CV', nBuy:'Як придбати', nContact:'Контакти',
       eyebrow:'Візуальна художниця · акварель, живопис, просторові інтервенції', nameA:'Вікторія',
-      lede:'Я досліджую поняття абсурду як основний емоційний метод.',
+      lede:'Досліджую поняття абсурду як основний емоційний метод.',
       ctaWorks:'Дивитися роботи', ctaEtsy:'Оригінали в Etsy',
       featCap:'<em>Sweet Heart</em> · 2025 · акварель, 20×25 см',
       worksKicker:'Роботи', worksTitle:'Акварель',
       worksLede:'Роботи з виставок «Sweet Heart» (Tovarystvo, Львів, 10.03–09.04.2026) та «Я маю тобі сказати, я маю тобі сказати», а також нові роботи. Натисніть на роботу, щоб збільшити.',
       all:'Усі', sold:'продано', framed:'в рамі', cm:'см', close:'Закрити', prev:'Попередня', next:'Наступна',
+projKicker:'Архів', projTitle:'Проєкти', projLede:'Відео, інсталяції, скульптура й живопис: проєкти, що виходять за межі акварелі. Натисніть на проєкт, щоб побачити всі зображення.', pBehance:'Дивитися на Behance', pVideo:'Відео та повний проєкт — на Behance',
       aboutKicker:'Про мене',
       facts:'Вікторія ROMA<br>Народилась 1997 р. на Волині, Україна.<br>Магістр монументального живопису, Львівська національна академія мистецтв, 2020 р.',
       statement:[
-        'Я досліджую поняття абсурду як основний емоційний метод.',
+        'Досліджую поняття абсурду як основний емоційний метод.',
         'Моя практика поєднує тілесність та фізіологію із технікою ботанічної точності, створюючи крихкі простори, де перетинаються історичні стереотипи і особисті міфи.',
         'Через акварель, живопис та просторові інтервенції я вивчаю руйнування критичних станів і ілюзії героїчної ідентичності.',
         'Я сприймаю реальність як змінну конструкцію, балансуючи між хаосом, пам’яттю й уявними конструкціями.',
@@ -372,7 +448,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
       footL:'© 2026 Вікторія ROMA', footR:'Україна'
     },
     en:{
-      skip:'Skip to content', nWorks:'Works', nAbout:'About', nCv:'CV', nBuy:'How to buy', nContact:'Contact',
+      skip:'Skip to content', nWorks:'Works', nProjects:'Projects', nAbout:'About', nCv:'CV', nBuy:'How to buy', nContact:'Contact',
       eyebrow:'Visual artist · watercolor, painting, spatial interventions', nameA:'Viktoriia',
       lede:'I explore the notion of the absurd as a primary emotional method.',
       ctaWorks:'View works', ctaEtsy:'Originals on Etsy',
@@ -380,6 +456,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
       worksKicker:'Works', worksTitle:'Watercolor',
       worksLede:'Works from the exhibitions “Sweet Heart” (Tovarystvo, Lviv, 10.03–09.04.2026) and “I Have to Tell You, I Have to Tell You”, plus new pieces. Click a work to enlarge.',
       all:'All', sold:'sold', framed:'framed', cm:'cm', close:'Close', prev:'Previous', next:'Next',
+projKicker:'Archive', projTitle:'Projects', projLede:'Video, installation, sculpture and painting: projects beyond watercolor. Click a project to see all images.', pBehance:'View on Behance', pVideo:'Video and full project on Behance',
       aboutKicker:'About',
       facts:'Viktoriia ROMA<br>Born 1997 in Volyn, Ukraine.<br>Master’s in Monumental Painting, Lviv National Academy of Arts, 2020.',
       statement:[
@@ -405,7 +482,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
     }
   };
 
-  var lang='uk', filter='all', cur=0, list=[];
+  var lang='uk', filter='all', cur=0, list=[], glist=[], pcur=0;
   try{var sv=localStorage.getItem('vr-lang');if(sv==='en'||sv==='uk')lang=sv;}catch(e){}
   function $(id){return document.getElementById(id);}
   function li(){return lang==='uk'?0:1;}
@@ -432,8 +509,8 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
 
   function renderGallery(){
     var t=T[lang],k=li();
-    list=W.filter(function(w){return filter==='all'||w.s===filter;});
-    $('gallery').innerHTML=list.map(function(w,i){
+    glist=W.filter(function(w){return filter==='all'||w.s===filter;});
+    $('gallery').innerHTML=glist.map(function(w,i){
       return '<button type="button" class="tile" data-n="'+i+'"><span class="frame"><img loading="lazy" src="'+w.id+'.jpg" alt="'+w.t[1]+'"></span>'+
         '<span class="cap"><b>'+w.t[k]+'</b><small>'+w.y+' · '+fmtSize(w.size)+'</small>'+
         (w.sold?'<small><span class="sold">'+t.sold+'</span></small>':'')+'</span></button>';
@@ -443,7 +520,14 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
   function showLb(n){
     var t=T[lang],k=li(),w=list[n];if(!w)return;
     cur=n;
-    $('lbImg').src=''+w.id+'.jpg';$('lbImg').alt=w.t[1];
+    if(w.p!=null){
+$('lbImg').src=w.src;$('lbImg').alt=w.alt;
+$('lbCap').innerHTML='<b>'+PJ[w.p].t[k]+'</b><small>'+(n+1)+' / '+list.length+'</small>';
+$('lbPrev').style.visibility=list.length>1?'visible':'hidden';
+$('lbNext').style.visibility=list.length>1?'visible':'hidden';
+return;
+}
+$('lbImg').src=''+w.id+'.jpg';$('lbImg').alt=w.t[1];
     $('lbCap').innerHTML='<b>'+w.t[k]+'</b>'+(w.t[0]!==w.t[1]?'<em>'+w.t[1-k]+'</em>':'')+
       '<small>'+SERIES[w.s][k]+'<br>'+w.y+' · '+fmtSize(w.size)+' · '+M[w.m][k]+
       (w.f?' · '+t.framed:'')+(w.sold?' · '+t.sold:'')+'</small>';
@@ -469,7 +553,9 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
     $('lang-uk').setAttribute('aria-pressed',String(lang==='uk'));
     $('lang-en').setAttribute('aria-pressed',String(lang==='en'));
     renderFilters();renderGallery();
-    if($('lb').open)showLb(Math.min(cur,list.length-1));
+    renderProjects();
+if($('pd').open){var st=$('pd').scrollTop;openProject(pcur);$('pd').scrollTop=st;}
+if($('lb').open)showLb(Math.min(cur,list.length-1));
   }
 
   document.querySelector('.lang').addEventListener('click',function(e){
@@ -484,7 +570,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
   });
   $('gallery').addEventListener('click',function(e){
     var b=e.target.closest('.tile');if(!b)return;
-    openLb(+b.getAttribute('data-n'));
+    list=glist;openLb(+b.getAttribute('data-n'));
   });
   $('lbClose').addEventListener('click',function(){$('lb').close();});
   $('lbPrev').addEventListener('click',function(){step(-1);});
@@ -495,7 +581,18 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 .72rem/
     if(e.key==='ArrowLeft')step(-1);
     if(e.key==='ArrowRight')step(1);
   });
-  render();
+$('projGrid').addEventListener('click',function(e){
+var b=e.target.closest('.pcard');if(!b)return;
+openProject(+b.getAttribute('data-p'));
+});
+$('pd').addEventListener('click',function(e){
+if(e.target===this||e.target.closest('#pdClose')){this.close();return;}
+var b=e.target.closest('.pd-grid button');if(!b)return;
+var p=PJ[pcur];
+list=pImgs(p).map(function(s,j){return {p:pcur,src:s,alt:p.t[1]+' — '+(j+1)};});
+openLb(+b.getAttribute('data-j'));
+});
+render();
 })();
 </script>
 
