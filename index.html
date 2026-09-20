@@ -353,6 +353,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 0.76rem
 
   /* projects: slug, images, videos, year, behance url, [ua,en] title, [ua,en] text */
 var PJ=[
+{slug:'sweet-heart',n:1,v:0,y:2026,ws:'sweet',t:['Sweet Heart','Sweet Heart'],m:['Персональна виставка · Акварель, папір · Товариство розвитку і прикрашання міста, Львів, Україна','Solo exhibition · Watercolor on paper · Society for the Development and Beautification of the City, Lviv, Ukraine'],d:['10.03 – 09.04.2026. Серія акварелей та об’єктів. Тут — афіша виставки й усі акварелі з неї.','10 Mar – 9 Apr 2026. A series of watercolors and objects. Shown here: the exhibition poster and all the watercolors from it.']},
 {slug:'red-is-love',n:5,v:0,y:2024,t:['Червоне то любов?','Is Red Love?'],m:['Серія полотен · Полотно, олія · Львів, Україна','Series of canvases · Oil on canvas · Lviv, Ukraine'],d:['Проєкт було представлено в Галереї ЛНАМ, Львів, 2024.','The project was presented at LNAM Gallery, Lviv, 2024.']},
 {slug:'tree-of-intrusive-thoughts',n:1,v:0,y:2024,t:['Дерево нав’язливих думок','Tree of Intrusive Thoughts'],m:['Полотно, олія, акрил · 210×210 см · Львів, Україна','Oil and acrylic on canvas · 210×210 cm · Lviv, Ukraine'],d:null},
 {slug:'chrysalis',n:4,v:0,y:2024,t:['Лялечка','Chrysalis'],m:['Шамот · 32×17×15 см','Chamotte clay · 32×17×15 cm'],d:['Лялечка метелика як форма очікування і завмирання.','The butterfly chrysalis as a form of waiting and stillness.']},
@@ -382,23 +383,27 @@ if(lang!=='uk')return n+(n===1?' image':' images');
 var a=n%10,b=n%100;
 return n+' '+(((a>=2&&a<=4&&(b<10||b>=20))||(a===1&&b!==11))?'зображення':'зображень');
 }
-function pImgs(p){var a=[],i;for(i=1;i<=p.n;i++)a.push('projects/'+p.slug+'-'+(i<10?'0':'')+i+'.jpg');return a;}
+function pItems(p){var a=[],i;
+for(i=1;i<=p.n;i++)a.push({src:'projects/'+p.slug+'-'+(i<10?'0':'')+i+'.jpg'});
+if(p.ws)W.forEach(function(w){if(w.s===p.ws)a.push({src:w.id+'.jpg',w:w});});
+return a;}
+function pImgs(p){return pItems(p).map(function(x){return x.src;});}
 function renderProjects(){
 var k=li();
 $('projGrid').innerHTML=PJ.map(function(p,i){
-var meta=[];if(p.y)meta.push(p.y);meta.push(pCount(p.n));
-return '<button type="button" class="pcard" data-p="'+i+'"><span class="frame"><img loading="lazy" src="projects/'+p.slug+'-01.jpg" alt="'+p.t[1]+'"></span>'+
+var meta=[];if(p.y)meta.push(p.y);meta.push(pCount(pImgs(p).length));
+return '<button type="button" class="pcard" data-p="'+i+'"><span class="frame"><img loading="lazy" src="'+pImgs(p)[0]+'" alt="'+p.t[1]+'"></span>'+
 '<span class="cap"><b>'+p.t[k]+'</b><small>'+meta.join(' · ')+'</small></span></button>';
 }).join('');
 }
 function openProject(i){
 var t=T[lang],k=li(),p=PJ[i],meta=[];
 pcur=i;
-if(p.y)meta.push(p.y);meta.push(pCount(p.n));
+if(p.y)meta.push(p.y);meta.push(pCount(pImgs(p).length));
 var html='<button type="button" class="lb-btn lb-close pd-close" id="pdClose" aria-label="'+t.close+'">×</button><div class="pd-in"><h3>'+p.t[k]+'</h3><p class="pd-meta">'+meta.join(' · ')+'</p>'+(p.m?'<p class="pd-meta pd-mat">'+p.m[k]+'</p>':'');
 if(p.d)html+='<div class="pd-text">'+p.d[k].split('\n').map(function(s){return '<p>'+s+'</p>';}).join('')+'</div>';
 if(p.url)html+='<div class="pd-links"><a class="btn ghost" href="'+p.url+'" target="_blank" rel="noopener">'+(p.v?t.pVideo:t.pBehance)+' <span aria-hidden="true">↗</span></a></div>';
-html+='<div class="pd-grid">'+pImgs(p).map(function(s,j){return '<button type="button" data-j="'+j+'"><img loading="lazy" src="'+s+'" alt="'+p.t[1]+' — '+(j+1)+'"></button>';}).join('')+'</div></div>';
+html+='<div class="pd-grid">'+pItems(p).map(function(x,j){return '<button type="button" data-j="'+j+'"><img loading="lazy" src="'+x.src+'" alt="'+p.t[1]+' — '+(x.w?x.w.t[1]:(j+1))+'"></button>';}).join('')+'</div></div>';
 $('pd').innerHTML=html;
 if(!$('pd').open)$('pd').showModal();
 $('pd').scrollTop=0;
@@ -567,7 +572,8 @@ projKicker:'Archive', projTitle:'Projects', projLede:'Video, installation, sculp
     cur=n;
     if(w.p!=null){
 $('lbImg').src=w.src;$('lbImg').alt=w.alt;
-$('lbCap').innerHTML='<b>'+PJ[w.p].t[k]+'</b><small>'+(n+1)+' / '+list.length+'</small>';
+if(w.wk){$('lbCap').innerHTML='<b>'+w.wk.t[k]+'</b>'+(w.wk.t[0]!==w.wk.t[1]?'<em>'+w.wk.t[1-k]+'</em>':'')+'<small>'+PJ[w.p].t[k]+'<br>'+w.wk.y+' · '+fmtSize(w.wk.size)+' · '+M[w.wk.m][k]+' · '+(n+1)+' / '+list.length+'</small>';}
+else $('lbCap').innerHTML='<b>'+PJ[w.p].t[k]+'</b><small>'+(n+1)+' / '+list.length+'</small>';
 $('lbPrev').style.visibility=list.length>1?'visible':'hidden';
 $('lbNext').style.visibility=list.length>1?'visible':'hidden';
 return;
@@ -635,7 +641,7 @@ $('pd').addEventListener('click',function(e){
 if(e.target===this||e.target.closest('#pdClose')){this.close();return;}
 var b=e.target.closest('.pd-grid button');if(!b)return;
 var p=PJ[pcur];
-list=pImgs(p).map(function(s,j){return {p:pcur,src:s,alt:p.t[1]+' — '+(j+1)};});
+list=pItems(p).map(function(x,j){return {p:pcur,src:x.src,wk:x.w,alt:p.t[1]+' — '+(x.w?x.w.t[1]:(j+1))};});
 openLb(+b.getAttribute('data-j'));
 });
 render();
