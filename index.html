@@ -255,6 +255,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 0.76rem
           <section class="cv-block"><h3 data-i="cvAwards"></h3><ol class="cv" id="cvAwards"></ol></section>
           <section class="cv-block"><h3 data-i="cvGroup"></h3><ol class="cv" id="cvGroup"></ol></section>
           <section class="cv-block"><h3 data-i="cvSolo"></h3><ol class="cv" id="cvSolo"></ol></section>
+          <section class="cv-block"><h3 data-i="cvCur"></h3><ol class="cv" id="cvCur"></ol></section>
         </div>
       </div>
     </section>
@@ -352,12 +353,24 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font:400 0.76rem
 
   /* projects: slug, images, videos, year, behance url, [ua,en] title, [ua,en] text */
 var PJ=[
+{slug:'pop-poll-gregs',n:1,v:0,o:'50% 0%',y:2026,t:['Pop Poll Greg’a','Pop Poll Greg’a'],m:['Арт-кураторка · Виставка · Публічноісторичний простір «Після тиші», Львів','Art curator · Exhibition · “After Silence” Public History Space, Lviv'],d:['16.09 – 29.11.2026. Середа–неділя, 12:00–18:00, вхід вільний.','16 Sep – 29 Nov 2026. Wednesday to Sunday, 12:00–18:00, free admission.']},
+{slug:'i-have-to-tell-you',n:1,v:0,o:'50% 40%',y:2026,t:['Я маю тобі сказати…','I Have Something to Tell You…'],m:['Виставковий проєкт · Графіка та живопис · Альтернативна кава, Львів','Exhibition project · Graphics and painting · Alternative Coffee, Lviv'],d:['Спільно з Марією Славною. Відкриття — 15.05.2026 о 18:30.','Together with Mariia Slavna. Opening: 15 May 2026, 18:30.']},
+{slug:'peaceful-field',n:1,v:0,o:'50% 0%',y:2026,t:['Мирне поле. Сільська фотографія','Peaceful Field. Village Photography'],m:['Арт-кураторка · Виставка · Публічноісторичний простір «Після тиші», Львів','Art curator · Exhibition · “After Silence” Public History Space, Lviv'],d:['02.05 – 05.07.2026. Середа–неділя, 12:00–18:00, вхід вільний.\nПартнери: «Гуляйпільські старожитності», Фонд імені Рози Люксембург в Україні.','2 May – 5 Jul 2026. Wednesday to Sunday, 12:00–18:00, free admission.\nPartners: “Huliaipole Antiquities”, Rosa Luxemburg Foundation in Ukraine.']},
+{slug:'sweet-heart',n:1,v:0,y:2026,t:['Sweet Heart','Sweet Heart'],m:['Виставка · Акварелі та об’єкти · Товариство розвитку і прикрашання міста, Львів','Exhibition · Watercolors and objects · Society for the Development and Beautification of the City, Lviv'],d:['10.03 – 09.04.2026.','10 Mar – 9 Apr 2026.']},
+{slug:'plus-plus-after-silence',n:1,v:0,o:'50% 0%',y:'2025–2026',t:['Plus Plus: подвійна експозиція','Plus Plus: Double Exposition'],m:['Арт-кураторка · Виставка · Публічноісторичний простір «Після тиші», Львів','Art curator · Exhibition · “After Silence” Public History Space, Lviv'],d:['05.12.2025 – 01.02.2026.\nАвтори — Ліза Свириденко та Єгор Самофал. Партнер — Heinrich Böll Stiftung.','5 Dec 2025 – 1 Feb 2026.\nAuthors: Liza Svyrydenko and Yehor Samofal. Partner: Heinrich Böll Stiftung.']},
+{slug:'siberian-side',n:1,v:0,o:'50% 72%',y:2025,t:['З сибірської сторони: родинний архів','From the Siberian Side: A Family Archive'],m:['Арт-кураторка · Виставка · Публічноісторичний простір «Після тиші», Львів','Art curator · Exhibition · “After Silence” Public History Space, Lviv'],d:['02.10 – 30.11.2025.\nПартнер — Фонд імені Рози Люксембург в Україні.','2 Oct – 30 Nov 2025.\nPartner: Rosa Luxemburg Foundation in Ukraine.']},
+{slug:'lazy-and-tender',n:1,v:0,o:'50% 68%',y:2025,t:['Ліниві та ніжні','The Lazy and the Tender'],m:['Сценографія · Театральна вистава · Київський академічний театр на Печерську, Київ','Scenography · Theatre production · Kyiv Academic Theatre on Pechersk, Kyiv'],d:['Вистава за віршами Юрія Іздрика. Режисер — Ольга Ларіна, композитор — Денис Мартинов, сценографка — Вікторія Романчук (ROMA). Прем’єра — травень 2025.','A production based on the poems of Yuri Izdryk. Director: Olha Larina; composer: Denys Martynov; scenographer: Viktoriia Romanchuk (ROMA). Premiere: May 2025.']},
+{slug:'gulyaipole',n:1,v:0,o:'50% 0%',y:2025,t:['Гуляйполе. Тимчасово переміщені історії','Huliaipole. Temporarily Displaced Stories'],m:['Арт-кураторка · Виставка · Публічноісторичний простір «Після тиші», Львів','Art curator · Exhibition · “After Silence” Public History Space, Lviv'],d:['12.04 – 04.05.2025.\nПартнери: «Гуляйпільські старожитності», Фонд імені Рози Люксембург в Україні.','12 Apr – 4 May 2025.\nPartners: “Huliaipole Antiquities”, Rosa Luxemburg Foundation in Ukraine.']},
+{slug:'waiting-time',n:1,v:0,o:'50% 84%',y:2024,t:['Час очікування','Time of Waiting'],m:['Домашня виставка · Львів','Home exhibition · Lviv'],d:['27.12.2024 – 01.01.2025. Відкриття — 27.12 о 18:00.','27 Dec 2024 – 1 Jan 2025. Opening: 27 Dec, 18:00.']},
+{slug:'last-day-of-summer',n:1,v:0,o:'50% 38%',y:2024,t:['В останній день літа радує те, що скоро весна','On the last day of summer, it’s a joy that spring is coming soon'],m:['Виставка · Живопис · Альтернативна кава, Львів','Exhibition · Painting · Alternative Coffee, Lviv'],d:['Відкриття — 31.08.2024 о 18:00.','Opening: 31 Aug 2024, 18:00.']},
+{slug:'art-charity-popup',n:1,v:0,o:'50% 0%',y:0,t:['Art Charity Pop-Up','Art Charity Pop-Up'],m:['Благодійний мистецький поп-ап · Mitte, Львів','Charity art pop-up · Mitte, Lviv'],d:['23–24.08. Четвертий мистецький поп-ап у Львові: 100% від продажу арт-робіт іде на актуальні потреби ЗСУ.','23–24 Aug. The fourth art pop-up in Lviv: 100% of the proceeds from art sales go to the current needs of the Armed Forces of Ukraine.']},
 {slug:'red-is-love',n:5,v:0,y:2024,t:['Червоне то любов?','Is Red Love?'],m:['Серія полотен · Полотно, олія · Львів, Україна','Series of canvases · Oil on canvas · Lviv, Ukraine'],d:['Проєкт було представлено в Галереї ЛНАМ, Львів, 2024.','The project was presented at LNAM Gallery, Lviv, 2024.']},
 {slug:'tree-of-intrusive-thoughts',n:1,v:0,y:2024,t:['Дерево нав’язливих думок','Tree of Intrusive Thoughts'],m:['Полотно, олія, акрил · 210×210 см · Львів, Україна','Oil and acrylic on canvas · 210×210 cm · Lviv, Ukraine'],d:null},
 {slug:'chrysalis',n:4,v:0,y:2024,t:['Лялечка','Chrysalis'],m:['Шамот · 32×17×15 см','Chamotte clay · 32×17×15 cm'],d:['Лялечка метелика як форма очікування і завмирання.','The butterfly chrysalis as a form of waiting and stillness.']},
 {slug:'portrait',n:1,v:0,y:2024,t:['Портрет','Portrait'],m:['Полотно, олія, останнє харківське вугілля · 125×85 см · Львів, Україна','Oil and “the last Kharkiv charcoal” on canvas · 125×85 cm · Lviv, Ukraine'],d:null},
 {slug:'flowers-in-memory',n:1,v:0,y:2024,t:['Квіти на пам’ять','Flowers in Memory'],m:['Серія «Стани війни» · Полотно, акрил, вугілля · 120×80 см · Львів, Україна','Series “States of War” · Acrylic and charcoal on canvas · 120×80 cm · Lviv, Ukraine'],d:null},
 {slug:'singing-stones',n:3,v:0,y:2023,t:['Співочі камені','Singing Stones'],m:['Аудіовізуальна інсталяція з 9 «каменів» · Шамот, акустична система · Львів, Україна','Audiovisual installation of 9 “stones” · Chamotte clay, sound system · Lviv, Ukraine'],d:['Створено в рамках проєкту «Могриця. Внутрішньопереміщений ландшафт».','Created as part of the project “Mohrytsia. Internally Displaced Landscape”.']},
+{slug:'plus-plus-2023',n:1,v:0,y:2023,t:['++ (плюс-плюс)','++ (Plus-Plus)'],m:['Виставка · Порохова вежа, Львів','Exhibition · Powder Tower, Lviv'],d:['29.10 – 05.11.2023, третій поверх.','29 Oct – 5 Nov 2023, third floor.']},
 {slug:'flight',n:3,v:0,y:2023,t:['Втеча / Швидкість думки','Escape / Speed of Thought'],m:['Полотно, олія · 100×200 см','Oil on canvas · 100×200 cm'],d:['Робота створена в рамках резиденції «Ціна свободи» Хмельницького художнього музею.','The work was created as part of the “Price of Freedom” residency of the Khmelnytskyi Art Museum.']},
 {slug:'twenty-questions',n:12,v:0,y:2023,t:['20 запитань і 20 відповідей','20 Questions and 20 Answers'],m:['Серія графічних робіт · Папір, лайнер · Тель-Авів, Ізраїль','Series of drawings · Paper, liner · Tel Aviv, Israel'],d:null},
 {slug:'ghosts',n:10,v:1,y:'2022–2023',url:'https://www.behance.net/gallery/157061763/GHOSTS',t:['Привиди','Ghosts'],m:['Відеоперформанс · Львів – Тель-Авів','Video performance · Lviv – Tel Aviv'],d:['Проєкт відображає проблему родин, розділених війною в Україні, відтворюючи спілкування подружжя на відстані.\nВідео (проєкцію) обрано основним медіумом як найкращий спосіб передати нереальність такого спілкування: спотворення звуку, затримку й деформацію зображення.\nОснова роботи — документальні файли (відео, аудіо й текст), накопичені під час перебування на резиденції. Вони фіксують дві паралельні реальності, у яких перебувають художники. Цей процес обміну новинами й емоціями в глобальному сенсі відображає українське суспільство, розділене на тих, хто виїхав під час бойових дій, і тих, хто залишився.\nОсновою стала взаємодія із «проєкцією з іншого часу», за аналогією до паперових листів, де ти під час відкриття листа/відео щоразу опинявся в минулому. Найдовша зустріч із «повідомленням» сталася через 3 місяці, після надсилання.','The project reflects the problem of families separated by the war in Ukraine, reproducing the communication of spouses at a distance.\nVideo (projection) was chosen as the main medium as the best means of conveying the unreality of such communication: sound distortion, delay and image deformation.\nThe work is based on documentary files (video, audio and text) accumulated during a residency. They record two parallel realities in which the artists find themselves. This exchange of news and emotions is, in a global sense, a reflection of Ukrainian society, divided between those who left the country during the hostilities and those who stayed.\nThe basis was interaction with a “projection from another time”, by analogy with paper letters, where each time you opened a letter/video you found yourself in the past. The longest encounter with a “message” happened 3 months after it was sent.']},
@@ -386,7 +399,7 @@ function renderProjects(){
 var k=li();
 $('projGrid').innerHTML=PJ.map(function(p,i){
 var meta=[];if(p.y)meta.push(p.y);meta.push(pCount(p.n));
-return '<button type="button" class="pcard" data-p="'+i+'"><span class="frame"><img loading="lazy" src="projects/'+p.slug+'-01.jpg" alt="'+p.t[1]+'"></span>'+
+return '<button type="button" class="pcard" data-p="'+i+'"><span class="frame"><img loading="lazy" src="projects/'+p.slug+'-01.jpg" alt="'+p.t[1]+'"'+(p.o?' style="object-position:'+p.o+'"':'')+'></span>'+
 '<span class="cap"><b>'+p.t[k]+'</b><small>'+meta.join(' · ')+'</small></span></button>';
 }).join('');
 }
@@ -416,6 +429,7 @@ $('pd').scrollTop=0;
       ['2020','III премія','Виставка плакатів — Габріела Запольська / Леся Українка «Паралельні біографії», Луцьк – Катовіце','3rd prize','Poster exhibition — Gabriela Zapolska / Lesya Ukrainka “Parallel Biographies”, Lutsk – Katowice']
     ],
     group:[
+      ['2026','Виставковий проєкт «Я маю тобі сказати…» (з Марією Славною), «Альтернативна кава», м. Львів, Україна','','Exhibition project “I Have Something to Tell You…” (with Mariia Slavna), Alternative Coffee, Lviv, Ukraine',''],
       ['2023','Симпозіум «Простір прикордоння», «Внутрішньо переміщений ландшафт», проєкт «Співочі камені», м. Львів, Україна','','Symposium “Borderland Space”, “Internally Displaced Landscape”, project “Singing Stones”, Lviv, Ukraine',''],
       ['2023','Групова виставка «Ціна свободи», проєкт «Швидкість думки», Донецький художній музей та історико-культурний центр в Маліївцях, Хмельниччина, Україна','','Group exhibition “The Price of Freedom”, project “Speed of Thought”, Donetsk Art Museum and Historical and Cultural Center in Maliivtsi, Khmelnytskyi region, Ukraine',''],
       ['2022','Групова виставка «JAR», проєкт «Привиди / Паралельні реальності» та «Дитина», Культурний центр посольства України в Ізраїлі, галерея JAR, Тель-Авів, Ізраїль','','Group exhibition “JAR”, project “Ghosts / Parallel Realities” and “Child”, Cultural Center of the Embassy of Ukraine in Israel, JAR gallery, Tel Aviv, Israel',''],
@@ -430,6 +444,7 @@ $('pd').scrollTop=0;
       ['2018','Груповий проєкт «Межі свободи», робота «Межа», Музей національно-визвольної боротьби, Львів, Україна','','Group project “Limits of Freedom”, work “Boundary”, Museum of the National Liberation Struggle, Lviv, Ukraine','']
     ],
     solo:[
+      ['2026','Виставка «Sweet Heart», Товариство розвитку і прикрашання міста, м. Львів, Україна','','Exhibition “Sweet Heart”, Society for the Development and Beautification of the City, Lviv, Ukraine',''],
       ['2024','Домашня виставка «Час очікування», м. Львів, Україна','','Home exhibition “Time of Waiting”, Lviv, Ukraine',''],
       ['2024','Виставка «В останній день літа радує те, що скоро весна», м. Львів, Україна','','Exhibition “On the last day of summer, it’s a joy that spring is coming soon”, Lviv, Ukraine',''],
       ['2024','Проєкт «Червоне то любов?», Галерея ЛНАМ, м. Львів, Україна','','Project “Is Red Love?”, LNAM Gallery, Lviv, Ukraine',''],
@@ -443,6 +458,14 @@ $('pd').scrollTop=0;
       ['2019','Виставка «Історії про нас», галерея Арт-коридор, м. Луцьк, Україна','','Exhibition “Stories About Us”, Art-Corridor gallery, Lutsk, Ukraine',''],
       ['2019','Виставка «Під відкритим небом», виставка акварельного живопису, м. Ківерці, Україна','','Exhibition “Under the Open Sky”, watercolor painting exhibition, Kivertsi, Ukraine',''],
       ['2018','Виставка «Спокій», Національна галерея Волинської спілки художників, м. Луцьк, Україна','','Exhibition “Calm”, National Gallery of the Volyn Union of Artists, Lutsk, Ukraine','']
+    ],
+    cur:[
+      ['2026','Арт-кураторка виставки «Pop Poll Greg’a», публічноісторичний простір «Після тиші», м. Львів, Україна','','Art curator of the exhibition “Pop Poll Greg’a”, “After Silence” Public History Space, Lviv, Ukraine',''],
+      ['2026','Арт-кураторка виставки «Мирне поле. Сільська фотографія», публічноісторичний простір «Після тиші», м. Львів, Україна','','Art curator of the exhibition “Peaceful Field. Village Photography”, “After Silence” Public History Space, Lviv, Ukraine',''],
+      ['2025–2026','Арт-кураторка виставки «Plus Plus: подвійна експозиція», публічноісторичний простір «Після тиші», м. Львів, Україна','','Art curator of the exhibition “Plus Plus: Double Exposition”, “After Silence” Public History Space, Lviv, Ukraine',''],
+      ['2025','Арт-кураторка виставки «З сибірської сторони: родинний архів», публічноісторичний простір «Після тиші», м. Львів, Україна','','Art curator of the exhibition “From the Siberian Side: A Family Archive”, “After Silence” Public History Space, Lviv, Ukraine',''],
+      ['2025','Сценографка вистави «Ліниві та ніжні» за Юрієм Іздриком, Київський академічний театр на Печерську, м. Київ, Україна','','Scenographer of the production “The Lazy and the Tender” after Yuri Izdryk, Kyiv Academic Theatre on Pechersk, Kyiv, Ukraine',''],
+      ['2025','Арт-кураторка виставки «Гуляйполе. Тимчасово переміщені історії», публічноісторичний простір «Після тиші», м. Львів, Україна','','Art curator of the exhibition “Huliaipole. Temporarily Displaced Stories”, “After Silence” Public History Space, Lviv, Ukraine','']
     ]
   };
 
@@ -466,7 +489,7 @@ projKicker:'Архів', projTitle:'Проєкти', projLede:'Відео, ін�
         'Я сприймаю реальність як змінну конструкцію, балансуючи між хаосом, пам’яттю й уявними конструкціями.',
         'Зараз я працюю в Україні, перетворюючи подієву лінію інфопростору на візуальні абсурди, які опираються простому сприйняттю.'
       ],
-      cvKicker:'Резюме', cvEdu:'Освіта', cvAwards:'Нагороди', cvGroup:'Групові виставки', cvSolo:'Персональні проєкти',
+      cvKicker:'Резюме', cvEdu:'Освіта', cvAwards:'Нагороди', cvGroup:'Групові виставки', cvSolo:'Персональні проєкти', cvCur:'Кураторство та сценографія',
       buyKicker:'Як придбати', buyTitle:'Від майстерні до вашої стіни', buyEtsy:'Магазин на Etsy', buySaatchi:'Saatchi Art',
       facts2:[
         ['Ціна','Оригінал 20×25 см у рамі — $205.'],
@@ -499,7 +522,7 @@ projKicker:'Archive', projTitle:'Projects', projLede:'Video, installation, sculp
         'I perceive reality as a mutable construct, balancing between chaos, memory and imagined constructs.',
         'I am currently working in Ukraine, turning the event line of the infospace into visual absurdities that resist simple perception.'
       ],
-      cvKicker:'Curriculum vitae', cvEdu:'Education', cvAwards:'Awards', cvGroup:'Group exhibitions', cvSolo:'Solo projects',
+      cvKicker:'Curriculum vitae', cvEdu:'Education', cvAwards:'Awards', cvGroup:'Group exhibitions', cvSolo:'Solo projects', cvCur:'Curating and scenography',
       buyKicker:'How to buy', buyTitle:'From the studio to your wall', buyEtsy:'Shop on Etsy', buySaatchi:'Saatchi Art',
       facts2:[
         ['Price','Original, 20×25 cm, framed — $205.'],
@@ -581,6 +604,7 @@ $('lbImg').src=''+w.id+'.jpg';$('lbImg').alt=w.t[1];
     $('cvAwards').innerHTML=cvRows(CV.awards);
     $('cvGroup').innerHTML=cvRows(CV.group);
     $('cvSolo').innerHTML=cvRows(CV.solo);
+    $('cvCur').innerHTML=cvRows(CV.cur);
     $('facts').innerHTML=t.facts2.map(function(f){return '<div><dt>'+f[0]+'</dt><dd>'+f[1]+'</dd></div>';}).join('');
     $('lbClose').setAttribute('aria-label',t.close);$('lbPrev').setAttribute('aria-label',t.prev);$('lbNext').setAttribute('aria-label',t.next);
     $('lang-uk').setAttribute('aria-pressed',String(lang==='uk'));
